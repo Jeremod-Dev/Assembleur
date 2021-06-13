@@ -48,20 +48,21 @@ Creé un fichier `ficNom`.asm ou `ficNom`.s
 ```asm
 bits 64
 ```
-Ce bout de code indique l'architecture de ma machine
+Ce bout de code indique l'architecture de la machine
+*`uname -a` si x86->32 bits, si x86_64 =>64 bits*
 
-Par la suite, je vais scindé mon fichier en section:
-- Section .data: Dans cette section je vais y mettre les variables initialisées
+Par la suite, scindez le fichier en section:
+- Section .data: Dans cette section nous allons y mettre les variables initialisées
 ```c
 //exemple de variable initialisées
 int variable = 45;
 ```
-- Section .bss: Dans cette section, je vais y mettre les variables allouées mais non-initialisées
+- Section .bss: Dans cette section nous allons y mettre les variables allouées mais non-initialisées
 ```c
 //exemple de variable initialisées
 int variable;
 ```
-- Section .text: Dans cette section, je vais y mettre mon code.
+- Section .text: Dans cette section nous allons y mettre mon code.
 ```c
 printf("Hello Word !"); 
 ```
@@ -106,11 +107,11 @@ _start:
 ```
 Une étiquette peux s'apparenté de loin à une fonction.
 Pour pouvoir afficher, ma variable dans la console. Je vais utilisé un `appel systeme`. L'identifiant de l'appel systeme ecrire est `1`.
-> Pour ne pas apprendre tous les identifiants des appels systemes je vous proposes de jeter un oeil au [tableau](blog.rchampman.org/posts/Linux_System_Call_Table_for_x68_64/)
+> Pour ne pas apprendre tous les identifiants des appels systemes je vous proposes de jeter un oeil au [tableau](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/)
 
 Dans le cas de l'appel systeme 1, le tableau indique plusieurs informations à saisir. Tout d'abord, mettre de le registre `rax` l'identifiant de l'appel systeme, puis dans `rdi` le code de la sortie/entrée à utiliser (stdin = 0, stdout = 1, stderr = 2). Ensuite, il faut renseigner dans `rsi` la variable, puis dans `rdx` la taille de la variable.
 
-Pour pouvoir mettre dans une valeur dans un registre l'instruction `mov` est parfaite. 
+Pour pouvoir mettre une valeur dans un registre l'instruction `mov` est parfaite. 
 
 ```asm
 mov <destination>, <source>
@@ -134,7 +135,7 @@ _start:
 ```
 **Le caractère `;` sert à commenter le code*
 
-A prèsent, nous allons assembler votre code en fichier objet. Pour ce faire, taper dans votre terminal se trouvant dans le dossier du fichier .asm ou .s:
+A prèsent, nous allons assembler votre code en fichier objet. Pour ce faire, tapez dans votre terminal se trouvant dans le dossier du fichier .asm ou .s:
 ```bash
 nasm -f elf64 nomFic.asm -o nomFic.o
 ```
@@ -171,7 +172,7 @@ bits 64
 global _start
 
 section .data
-    maVar db "Hello World !",10,0
+    maVar db "Hello World !",10
 
 section .text
 _start:
@@ -195,7 +196,7 @@ On execute :smile: ... et bruh... :unamused: La deuxième partie de la chaine ne
 
 En effet, dans `_start`, nous avons spécifié que la chaine faisait 14 caractères donc le programme affiche 14 caractères. Nous pourrions de nouveau compter le nombre de caractère dans la chaine mais ca risque d'etre agaçant. Du coup on va faire quelque chose de plus dynamique.
 
-Tout d'abord, il faut compter le nombre de caractères contenu dans la chaine. Dans la section .data, à la suite de l'initialisation de maVar, declaré et initialisez une varible qui est egal au nombre de caractères de maVar.... Vous attendez quoi? Allez y.
+Tout d'abord, il faut compter le nombre de caractères contenu dans la chaine. Dans la section `.data`, à la suite de l'initialisation de maVar, declarez et initialisez une variable qui est egal au nombre de caractères de maVar.... Vous attendez quoi? Allez y.
 :smile: Je rigole, c'est plus compliqué que tout à l'heure, tout fois ça ressemble à du code bash.
 
 ```asm
@@ -230,11 +231,11 @@ _quitter:
 ```
 Assemblez puis executez...
 
-Bim tout s'affiche et sans d'erreurs :partying_face: :sunglasses:
+Bim tout s'affiche et sans erreurs :partying_face: :sunglasses:
 
 Voilà nous venons de faire notre premier code en assembleur, le fameux `Hello Word`
 
-A present, vous etes tellemnt fière que vous décidez de montrer votre programme à vos amis. Pour éviter d'ouvrir votre editeur de code, tapez afin de désassembler votre code:
+A present, vous etes tellement fière que vous décidez de montrer votre programme à vos amis. Pour éviter d'ouvrir votre editeur de code, tapez afin de désassembler votre code:
 
 ```bash
 objdump -d nomFic
