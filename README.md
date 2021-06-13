@@ -59,7 +59,7 @@ int variable = 45;
 ```
 - Section .bss: Dans cette section nous allons y mettre les variables allouées mais non-initialisées
 ```c
-//exemple de variable initialisées
+//exemple de variable non-initialisées
 int variable;
 ```
 - Section .text: Dans cette section nous allons y mettre mon code.
