@@ -9,7 +9,7 @@ Caractéristique de la machine:
 ---
 ## Introduction
 
-Lors de mon passage à l'Institut Universitaire de technologie du Limousin au département Informatique, j'ai eu un module (m2201) qui avait pour objectif de nous donner les prémices de l'architectur systeme et les mécanismes de programmation d'un système informatique. Dans ce module nous avons abordé l'encodage dans différentes bases (binaire, octal, decimal, hexadecimal). Par la suite, le cours m'a permis d'apprendre le principe de la Stack (pile) et des registres avec un programme en Rust et assembleur. Cependant, le nombre de cours sur le module étant restrinct je n'ai pas pus apprendre beaucoup plus de choses sur les langages d'assembleur. Afin d'éclaircir le flou de lié à certaines notions et d'approfondir le cours, j'ai pris la décision d'apprendre un langage d'assembleur et de developper de petits programmes. Le but étant de développer au plus près de la machine. Ce README permettra de transmettre les connaissances et de les garder en mémoire.  
+Lors de mon passage à l'Institut Universitaire de Technologie du Limousin au département Informatique, j'ai eu un module (m2201) qui avait pour objectif de nous donner les prémices de l'architectur systeme et les mécanismes de programmation d'un système informatique. Dans ce module nous avons abordé l'encodage dans différentes bases (binaire, octal, decimal, hexadecimal). Par la suite, le cours m'a permis d'apprendre le principe de la Stack (pile) et des registres avec un programme en Rust et assembleur. Cependant, le nombre de cours sur le module étant restrinct je n'ai pas pus apprendre beaucoup plus de choses sur les langages d'assembleur. Afin d'éclaircir le flou de lié à certaines notions et d'approfondir le cours, j'ai pris la décision d'apprendre un langage d'assembleur et de developper de petits programmes. Le but étant de développer au plus près de la machine. Ce README permettra de transmettre les connaissances et de les garder en mémoire.  
 
 ## Sommaire
 
@@ -59,7 +59,7 @@ int variable = 45;
 ```
 - Section .bss: Dans cette section nous allons y mettre les variables allouées mais non-initialisées
 ```c
-//exemple de variable initialisées
+//exemple de variable non-initialisées
 int variable;
 ```
 - Section .text: Dans cette section nous allons y mettre mon code.
@@ -68,11 +68,11 @@ printf("Hello Word !");
 ```
 Rien de compliqué jusqu'ici :smile:
 
-asm demande de séparer le glossaire entre les variables initialisées et non-initialisés car elle ne vont pas aller dans le même endroit dans la machine. :wink:
+Asm demande de séparer le glossaire entre les variables initialisées et non-initialisés car elle ne vont pas aller dans le même endroit dans la machine. :wink:
 
 Continuons!
 
-Déclarons à présent, une variable de type chaine de caractères. Pour cela, je vais utilisé l'instruction `db` qui signifie `Data Byte` et sert à inserer des données. Voici quelques variantes:
+Déclarons à présent, une variable de type chaine de caractères. Pour cela, je vais utilisé l'instruction `db` qui signifie `Data Byte` et sert à "allouer" de la memoire pour inserer des données. Voici quelques variantes:
 
 instruction | Taille
 ------------|--------
@@ -89,14 +89,14 @@ section .data
 ```
 > le 10 correspond au retour à la ligne (table ascii)
 
-Nous venons de déclarer et instancier notre prmière variable en asm
+Nous venons de déclarer et instancier notre première variable en asm
 
-Quand nous programmons en c, c++ ou meme python. Nous devons spécifier à la machine l'entrée du programme, souvent ces la procédure `main`. Dans notre cas, pour le spécifié nous devons utiliser le mot clef `global` en y mettant le nom de mon __etiquette__ d'entrée.
+Quand nous programmons en c, c++ ou meme python. Nous devons spécifier à la machine l'entrée du programme, souvent c'est la procédure `main`. Dans notre cas, pour le spécifié nous devons utiliser le mot clef `global` en y mettant le nom de mon __etiquette__ d'entrée.
 
 ```asm
 bits 64
 
-global _start
+global _start ; déclaration du point d'entrée du programme
 
 section .data
     maVar db "Hello Word !",10
@@ -106,7 +106,7 @@ _start:
     ; Inserer son code
 ```
 Une étiquette peux s'apparenté de loin à une fonction.
-Pour pouvoir afficher, ma variable dans la console. Je vais utilisé un `appel systeme`. L'identifiant de l'appel systeme ecrire est `1`.
+Pour pouvoir afficher, ma variable dans la console, je vais utilisé un `appel systeme`. L'identifiant de l'appel systeme ecrire est `1`.
 > Pour ne pas apprendre tous les identifiants des appels systemes je vous proposes de jeter un oeil au [tableau](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/)
 
 Dans le cas de l'appel systeme 1, le tableau indique plusieurs informations à saisir. Tout d'abord, mettre de le registre `rax` l'identifiant de l'appel systeme, puis dans `rdi` le code de la sortie/entrée à utiliser (stdin = 0, stdout = 1, stderr = 2). Ensuite, il faut renseigner dans `rsi` la variable, puis dans `rdx` la taille de la variable.
