@@ -280,3 +280,12 @@ et là nickel :sunglasses:
   401022:	bf 00 00 00 00       	mov    edi,0x0
   401027:	0f 05                	syscall 
 ```
+---
+
+## Details
+
+Après avoir codé un petit programme simpliste, voyons quelques notions qui paraissent importante. Tout d'abord les instructions `mov`, `jmp` et `syscall` sont appelés des mnémoniques.
+
+De plus, l'affichage retourné par le désassemblage admet des differences avec notre code. Nous avons davantage de détails comme l'adresse de chaque instruction et la valeur de cette derniere en hexadecimal. Le mnémonique `syscall` correspond en hexadecimal à `07 05`, cad en binaire `0000 0111 0000 0101`.
+
+L'argument de l'instruction `jmp` est modifié par l'adresse de l'étiquette passé en argument.
