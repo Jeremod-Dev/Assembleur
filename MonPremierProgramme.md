@@ -231,7 +231,7 @@ mais là, vous ne reconnaissez pas l'affichage
   401022:	bf 00 00 00 00       	mov    $0x0,%edi
   401027:	0f 05                	syscall 
 ```
-Normal, comme dit au debut, il existe deux syntaxes la `AT&T` et la `Intel`. Nous avons developpé en `Intel` et là nous affichons en `AT&T`... :confused:
+Normal, il existe deux syntaxes la `AT&T` et la `Intel`. Nous avons developpé en `Intel` et là nous affichons en `AT&T`... :confused:
 Pour afficher en `Intel` faites:
 
 ```bash
@@ -263,5 +263,15 @@ Après avoir codé un petit programme simpliste, voyons quelques notions qui par
 De plus, l'affichage retourné par le désassemblage admet des differences avec notre code. Nous avons davantage de détails comme l'adresse de chaque instruction et la valeur de cette derniere en hexadecimal. Le mnémonique `syscall` correspond en hexadecimal à `07 05`, cad en binaire `0000 0111 0000 0101`.
 
 L'argument de l'instruction `jmp` est modifié par l'adresse de l'étiquette passé en argument.
+
+Detaillons, à présent, un peu plus la difference entre la syntaxe `AT&T` et `Intel`. Ce qui saute aux yeux c'est l'ajouts des symobles `%` et `$`. Les `%` correspondent aux valeurs variables tel que les registres et les `$` aux valeurs fixe. Deuxieme difference, et pas des moindres, la syntaxe de `mov`. En `intel` on met en premier argument la destination puis en seconde la source. En syntaxe `AT&T` c'est l'inverse.
+
+```asm
+mov eax,1 ;syntaxe intel
+```
+```asm
+mov $1, %eax ;syntaxe AT&T
+```
+Ces deux instructions font la même chose, cad mettre la valeur 1 dans le registre eax.
 
 [Retour au readme](README.md)
