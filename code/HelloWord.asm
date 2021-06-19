@@ -13,13 +13,13 @@ _start:
     mov rdi, 1
     mov rsi, maVar
     mov rdx, longueur
-    syscall
+    int 0x80
     jmp _quitter
 
 _quitter:
     mov rax, 60
     mov rdi, 0
-    syscall
+    int 0x80
 
 
 

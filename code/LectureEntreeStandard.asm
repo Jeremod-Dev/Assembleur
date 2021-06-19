@@ -6,7 +6,7 @@ section .bss ; section dédiés aux variables déclarées mais non initialisé
     entree resb 64
     entreeTaille equ $-entree
 
-section .data ; section du code source du programme
+section .text ; section du code source du programme
 
 _start:
     mov rax, 0 ; id de l'appel systeme
