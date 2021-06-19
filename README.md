@@ -14,7 +14,6 @@ Lors de mon passage à l'Institut Universitaire de Technologie du Limousin au d�
 ## Sommaire
 
 - [Le systeme d'exploitation et processeur](#system)
-- [Developper son premier programme](#HelloWord)
 
 
 ## Le systeme d'exploitation et processeur <a id="system"></a>
@@ -38,7 +37,7 @@ Pour commencer, il n'existe pas un asm. Il va varié en fonction de l'OS, de l'a
 
 Avant de developper, je me suis renseigné sur les type de fichier. J'ai compris qu'il existait deux types de fichier: les fichiers __binaire__ et __texte__. De là, je vais devoir transformer mon code en un objet que je vais devoir lié avec un lieur (ld sous linux). 
 
-Pour programmer en asm il faut suivre une structure conventionnelle. Je vous proposes de developper en suivant des indications, votre premier code en assembleur. Pour cela suivez les indications en cliquant sur ce [BOUTON](github.com/Jeremod-Dev/Assembleur/blob/main/MonPremierProgramme.md)
+Pour programmer en asm il faut suivre une structure conventionnelle. Je vous proposes de developper en suivant des indications, votre premier code en assembleur. Pour cela suivez les indications en cliquant sur ce [BOUTON](MonPremierProgramme.md)
 
 ---
 
