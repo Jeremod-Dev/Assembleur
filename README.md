@@ -38,17 +38,8 @@ Pour commencer, il n'existe pas un asm. Il va varié en fonction de l'OS, de l'a
 
 Avant de developper, je me suis renseigné sur les type de fichier. J'ai compris qu'il existait deux types de fichier: les fichiers __binaire__ et __texte__. De là, je vais devoir transformer mon code en un objet que je vais devoir lié avec un lieur (ld sous linux). 
 
-Pour programmer en asm il faut suivre une structure conventionnelle. Je vous proposes de developper en suivant des indications, votre premier code en assembleur. Ensuite, nous essayerons de comprendre ce qui ce cache derrière certains mot barbare.
+Pour programmer en asm il faut suivre une structure conventionnelle. Je vous proposes de developper en suivant des indications, votre premier code en assembleur. Pour cela suivez les indications en cliquant sur ce [BOUTON](github.com/Jeremod-Dev/Assembleur/blob/main/MonPremierProgramme.md)
 
 ---
 
-## Details
-
-Après avoir codé un petit programme simpliste, voyons quelques notions qui paraissent importante. Tout d'abord les instructions `mov`, `jmp` et `syscall` sont appelés des mnémoniques.
-
-De plus, l'affichage retourné par le désassemblage admet des differences avec notre code. Nous avons davantage de détails comme l'adresse de chaque instruction et la valeur de cette derniere en hexadecimal. Le mnémonique `syscall` correspond en hexadecimal à `07 05`, cad en binaire `0000 0111 0000 0101`.
-
-L'argument de l'instruction `jmp` est modifié par l'adresse de l'étiquette passé en argument.
-
----
 ## Les Registres

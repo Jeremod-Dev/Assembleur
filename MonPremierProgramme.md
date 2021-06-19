@@ -1,4 +1,21 @@
-## Developper son premier programme <a id="HelloWord"></a>
+## Developper son premier programme
+
+### Prérequis
+Pour developper un programme en asm, il vous faudra utiliser le SE `archlinux` ou `Manjaro`, le compilateur `NASM` et le lieur `ld` *Deja present sous linux*
+
+Si vous n'avez pas de machine a disposition où vous pouvez installer Linux utilisé une machine virtuelle. De plus, pour installer `nasm` sur archlinux ou manjaro faites:
+
+
+```bash
+pamac install nasm
+```
+puis
+```bash
+sudo pacman -S nasm
+```
+puis confirmé en appuyant sur `o` lors de la demande de confirmation.
+
+## Commençons par le commencement
 
 Creé un fichier `ficNom`.asm ou `ficNom`.s
 
@@ -238,3 +255,11 @@ et là nickel :sunglasses:
   401027:	0f 05                	syscall 
 ```
 ---
+
+## Details
+
+Après avoir codé un petit programme simpliste, voyons quelques notions qui paraissent importante. Tout d'abord les instructions `mov`, `jmp` et `syscall` sont appelés des mnémoniques.
+
+De plus, l'affichage retourné par le désassemblage admet des differences avec notre code. Nous avons davantage de détails comme l'adresse de chaque instruction et la valeur de cette derniere en hexadecimal. Le mnémonique `syscall` correspond en hexadecimal à `07 05`, cad en binaire `0000 0111 0000 0101`.
+
+L'argument de l'instruction `jmp` est modifié par l'adresse de l'étiquette passé en argument.
