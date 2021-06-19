@@ -7,7 +7,9 @@ section .bss
     entreeTaille equ $-entree
 
 section .data
-    affichage dq "Votre saisi est:"
+    consigne dd "Saisissez quelque chose: "
+    consigneTaille equ $-consigne
+    affichage dd "Votre saisi est: "
     affichageTaille equ $-affichage
 
 section .text
@@ -16,6 +18,13 @@ _start:
     jmp _lire
 
 _lire:
+    ;affichage de la consigne
+    mov rax, 1
+    mov rdi, 1
+    mov rsi, consigne
+    mov rdx, consigneTaille
+    syscall
+    ;lecture de l'entree stdin
     mov rax, 0
     mov rdi, 0
     mov rsi, entree
@@ -24,12 +33,17 @@ _lire:
     jmp _ecrire
 
 _ecrire:
+    ;affichage de "Votre saisi est: "
     mov rax, 1
     mov rdi, 1
     mov rsi, affichage
-    add rsi, entree
     mov rdx, affichageTaille
-    add rdx, entreeTaille
+    syscall
+    ; affichage de la saisi
+    mov rax, 1
+    mov rdi, 1
+    mov rsi, entree
+    mov rdx, entreeTaille
     syscall
     jmp _quitter
 
