@@ -1,9 +1,9 @@
 ## Developper son premier programme
 
 ### Prérequis
-Pour developper un programme en asm, il vous faudra utiliser le SE `archlinux` ou `Manjaro`, le compilateur `NASM` et le lieur `ld` *Deja present sous linux*
+Pour développer un programme en asm, il vous faudra utiliser le SE `archlinux` ou `Manjaro`, le compilateur `NASM` et le lieur `ld` *Déjà present sous linux*
 
-Si vous n'avez pas de machine à disposition où vous pouvez installer Linux utilisé une machine virtuelle. De plus, pour installer `nasm` sur archlinux ou manjaro faites:
+Si vous n'avez pas de machine à disposition sur laquelle vous pouvez installer Linux, installez une machine virtuelle. De plus, pour installer `nasm` sur archlinux ou manjaro faites:
 
 
 ```bash
@@ -65,7 +65,7 @@ section .data
 
 Nous venons de déclarer et instancier notre première variable en asm
 
-Quand nous programmons en c, c++ ou même python. Nous devons spécifier à la machine l'entrée du programme, souvent c'est la procédure `main`. Dans notre cas, pour le spécifier nous devons utiliser le mot clef `global` en y mettant le nom de mon __etiquette__ d'entrée.
+Quand nous programmons en c, c++ ou même python. Nous devons spécifier à la machine l'entrée du programme, souvent c'est la procédure `main`. Dans notre cas, pour le spécifier nous devons utiliser le mot clé `global` en y mettant le nom de mon __etiquette__ d'entrée.
 
 ```asm
 bits 64
@@ -79,11 +79,11 @@ section .text
 _start:
     ; Inserer son code
 ```
-Une étiquette peux s'apparenté de loin à une fonction.
-Pour pouvoir afficher, ma variable dans la console, je vais utilisé un `appel systeme`. L'identifiant de l'appel systeme ecrire est `1`.
+Une étiquette peut s'apparenter de loin à une fonction.
+Pour pouvoir afficher, ma variable dans la console, je vais utiliser un `appel systeme`. L'identifiant de l'appel système 'écrire' est `1`.
 > Pour ne pas apprendre tous les identifiants des appels systemes, je vous proposes de jeter un oeil au [tableau](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/)
 
-Dans le cas de l'appel systeme 1, le tableau indique plusieurs informations à saisir. Tout d'abord, mettre de le registre `rax` l'identifiant de l'appel systeme, puis dans `rdi` le code de la sortie/entrée à utiliser (stdin = 0, stdout = 1, stderr = 2). Ensuite, il faut renseigner dans `rsi` la variable, puis dans `rdx` la taille de la variable.
+Dans le cas de l'appel systeme 1, le tableau indique plusieurs informations à saisir. Tout d'abord, mettre de le registre `rax` l'identifiant de l'appel système, puis dans `rdi` le code de la sortie/entrée à utiliser (stdin = 0, stdout = 1, stderr = 2). Ensuite, il faut renseigner dans `rsi` la variable, puis dans `rdx` la taille de la variable.
 
 Pour pouvoir mettre une valeur dans un registre l'instruction `mov` est parfaite. 
 
@@ -109,7 +109,7 @@ _start:
 ```
 **Le caractère `;` sert à commenter le code*
 
-A prèsent, nous allons assembler votre code en fichier objet. Pour ce faire, tapez dans votre terminal se trouvant dans le dossier du fichier .asm ou .s:
+A présent, nous allons assembler votre code en fichier objet. Pour ce faire, tapez dans votre terminal se trouvant dans le dossier du fichier .asm ou .s:
 ```bash
 nasm -f elf64 nomFic.asm -o nomFic.o
 ```
@@ -126,7 +126,7 @@ Le fichier nomFic est executable. Faites:
 *si cela ne fonctionne pas, changez les droits sur le fichier avec un bon vieux `chmod`*
 
 Pour assembler et tester notre programme nous ferons toujours cette manipulation.
-Le programme s'execute... :smile: 
+Le programme s'exécute... :smile: 
 
 ```asm 
 Hello Word !
@@ -137,9 +137,9 @@ mais il y a une erreur :unamused:
 
 *`echo $?` permet de savoir la valeur du code erreur, dans notre cas 139*
 
-L'erreur intervient car le programme a été fermé par l'OS. Il serait préférable de le faire nous même afin d'éviter toutes erreurs.
+L'erreur intervient car le programme a été fermé par l'OS. Il serait préférable de le faire nous même afin d'éviter toute erreur!
 
-Dans notre code, à la suite de `_start` nous allons créer une nouvelle étiquette`_exit`. Dans cette étiquette nous allons utiliser un nouvel appel système cad le `sys_exit` avec l'id 60. Retournez dans le tableau de tout à l'heure, allez à la ligne 60 et essayez de faire la même manipulation que précedemment. Par ailleurs pour le code erreur nous lui attriburons la valeur `0` étant donné que c'est la valeur qui signifie `pas d'erreur à l'horizon`. Une fois le code ajouté à la suite, le programme n'appel pas l'étiquette `_exit`. Dans ce cas, il faut que dans `_start` nous appelions `_exit`. Cela se fait avec l'instruction `jmp` (jump). Votre code devrait ressembler à ça:
+Dans notre code, à la suite de `_start` nous allons créer une nouvelle étiquette`_exit`. Dans cette étiquette nous allons utiliser un nouvel appel système cad le `sys_exit` avec l'id 60. Retournez dans le tableau de tout à l'heure, allez à la ligne 60 et essayez de faire la même manipulation que précedemment. Par ailleurs pour le code erreur nous lui attribuerons la valeur `0` etant donné que c'est la valeur qui signifie `pas d'erreur à l'horizon`. Une fois le code ajouté à la suite, le programme n'appelle pas l'étiquette `_exit`. Dans ce cas, il faut que dans `_start` nous appelions `_exit`. Cela se fait avec l'instruction `jmp` (jump). Votre code devrait ressembler à ça:
 
 ```asm
 bits 64
@@ -164,21 +164,21 @@ _exit:
 ```
 Assemblez et executez le programme. Plus d'erreur! :smile: et `echo $?` donne le code `0`. Nickel!
 
-A prèsent amusons nous, changons `Hello Word !` par `Hello Word ! Je m'appelle Jeremy`.
+A présent amusons nous, changeons `Hello Word !` par `Hello Word ! Je m'appelle Jeremy`.
 
-On execute :smile: ... et bruh... :unamused: La deuxième partie de la chaine ne s'affiche pas!
+On exécute :smile: ... et bruh... :unamused: La deuxième partie de la chaine ne s'affiche pas!
 
-En effet, dans `_start`, nous avons spécifié que la chaine faisait 14 caractères donc le programme affiche 14 caractères. Nous pourrions de nouveau compter le nombre de caractère dans la chaine mais ça risque d'etre agaçant. Du coup on va faire quelque chose de plus dynamique.
+En effet, dans `_start`, nous avons spécifié que la chaine faisait 14 caractères donc le programme affiche 14 caractères. Nous pourrions de nouveau compter le nombre de caractères dans la chaine mais ça risque d'etre agaçant. Du coup on va faire un truc plus dynamique.
 
-Tout d'abord, il faut compter le nombre de caractères contenu dans la chaine. Dans la section `.data`, à la suite de l'initialisation de maVar, declarez et initialisez une variable qui est égal au nombre de caractères de maVar.... Vous attendez quoi? Allez y.
-:smile: Je rigole, c'est plus compliqué que tout à l'heure, tout fois ça ressemble à du code bash.
+Tout d'abord, il faut compter le nombre de caractères contenus dans la chaine. Dans la section `.data`, à la suite de l'initialisation de maVar, declarez et initialisez une variable qui est égale au nombre de caractères de maVar.... Vous attendez quoi? Allez-y.
+:smile: Je rigole, c'est plus compliqué que tout à l'heure, toute fois ça ressemble à du code bash.
 
 ```asm
 section .data
     maVar db "Hello Word !",10
     longueur equ $-maVar ; 'equ' => 'égale à'
 ```
-Une fois la variable prête, faut l'utiliser. Dans `.text` dans `_start` substitué le `14` par `longueur`
+Une fois la variable prête, faut l'utiliser. Dans `.text` dans `_start` substituer le `14` par `longueur`
 
 ```asm
 bits 64
@@ -209,7 +209,7 @@ Bim tout s'affiche et sans erreurs :partying_face: :sunglasses:
 
 Voilà nous venons de faire notre premier code en assembleur, le fameux `Hello Word`
 
-A present, vous êtes tellement fière que vous décidez de montrer votre programme à vos amis. Pour éviter d'ouvrir votre editeur de code, tapez afin de désassembler votre code:
+A present, vous êtes tellement fiers que vous décidez de montrer votre programme à vos amis. Pour éviter d'ouvrir votre éditeur de code, tapez afin de désassembler votre code:
 
 ```bash
 objdump -d nomFic
