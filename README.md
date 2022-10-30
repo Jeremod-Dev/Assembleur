@@ -29,7 +29,9 @@ Le systeme d'exploitation et le langage d'assembleur (notation ad hoc asm) sont 
 
 A ce jour, il y existe 3 SE (=Systeme Exploitation ou OS) dominant: __Windows__, __MacOS__ et __Linux__. Ils permettent le fonctionnement de l'ordinateur. C'est plus particulièrement, le noyau de l'OS appelé Kernel. Et nous pouvons intéragir avec via le shell notamment.
 
-Le processeur est un composant matériel qui permet de faire des calculs. Il admet une horloge et des registres. L'horloge émet un signal régulier pour synchroniser les processus. Les registres sont des cases mémoire internes au processeur. Leur proximité permet une vitesse de calcul rapide.
+Le processeur est un composant matériel qui permet de faire des calculs. Il admet une horloge qui donne le "rythme", des registres qui permettent d'enregistrer des valeurs, un bus de données qui permet le transport des données, un bus d'adresse qui permet le transport des données et la MMU pour la gestion de la mémoire. L'horloge émet un signal régulier pour synchroniser les processus. Les registres sont des cases mémoire internes au processeur. Leur proximité permet une vitesse de calcul très rapide comporé au disque dur par exemple.
+
+Un processeur peut réaliser des opérations grâce à son "cablage". Ces opérations peuvent être `nop`, `call`, `jump` etc. Lorsque l'on cherche à développer directement avec les instructions du processeur, on dit que l'on fait de l'assembleur.
 
 ## Le langage d'assembleur
 
